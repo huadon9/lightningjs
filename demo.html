@@ -25,15 +25,35 @@
 			height: 100px;
 			background-color: #d2f;
 		}
+		span{
+			padding:10px;
+			background-color: #34f;
+		}
+		#pox1{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			background-color: #de2;
+		}
+		#pox2{
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			background-color: #d5f;
+			opacity: .8;
+		}
 	</style>
 </head>
 <body>
 	
 	<div id="box1">box1</div>
 	<div id="box2">box2</div>
+	<div><div id="pox1"></div><div id="pox2"></div></div>
+	<span id="spa1">123456</span>
 	<div id="box3">box3</div>
 	<div id="box4">box4</div>
-
+	<button id="btn1">button1</button>
+	<button id="btn2">button2</button>
 
 	<script src="lightning.js"></script>
 	<script>
@@ -42,12 +62,29 @@
 			alert(1);
 		})
 
+		$('#box3').hide();
+
 		document.onclick = function () {
 			$('#box3').toggle();
-			$('#box4').toggle();
+			// $('#box4').toggle();
 		}
 
+		$('#btn1').on('tap',function(){
+			$('#box1').hide();
+			$('#box2').hide();
+			$('#spa1').hide();
+			$('#pox1').hide();
+			$('#pox2').hide();
+		})
 
+
+		$('#btn2').on('tap',function(){
+			$('#box1').show();
+			$('#box2').show();
+			$('#spa1').show();
+			$('#pox1').show();
+			$('#pox2').show();
+		})
 	</script>
 </body>
 </html>
