@@ -204,13 +204,16 @@ Lightning.prototype = {
 		var ele = this.elements[0],		
 			step = 0.01,
 			t = num * step;
-		ele.setAttribute('data-show',SHOWINDEX);
 		DIS[SHOWINDEX] = this.css('display');
 		OPA[SHOWINDEX] = this.css('opacity');
-		// DIS.push(ele + this.css('display'));
-		// OPA.push(this.css('opacity'));
+		var attr = ele.getAttribute('data-show');
+		if(!attr){
+			ele.setAttribute('data-show',SHOWINDEX);
+			SHOWINDEX ++;
+		}
+
 		var start = this.css('opacity');
-		// console.log('xxx' + this.opa);
+		
 		if(num != undefined){
 			var int = setInterval(function(){
 				if(t < 10){
@@ -232,7 +235,7 @@ Lightning.prototype = {
 		}else{
 			this.css('display','none');
 		}
-		SHOWINDEX ++;
+
 		return this;
 	},
 
@@ -247,6 +250,11 @@ Lightning.prototype = {
 		    index = ele.getAttribute('data-show'),
 		    eledis = DIS[index],
 		    opa = OPA[index];
+		    console.log(index);
+		    console.log(eledis);
+
+		    console.log(DIS);
+
 		if(num != undefined){
 			if(ele.style.display == 'none'){
 				var int = setInterval(function(){
@@ -274,33 +282,17 @@ Lightning.prototype = {
 			ele.style.opacity = opa;
 			
 		}
-		// ele.removeAttribute('data-show');
 		return this;
 	},
 
 	//显示隐藏切换
 	toggle : function(){
-		var ele = this.elements[0],
-			index = ele.getAttribute('data-show'),
-		    eledis = DIS[index],
-		    opa = OPA[index];
-		    // var temp = ele.getAttribute('data-show');
-		if(ele.style.display == 'none'){
-			ele.style.display = eledis;
-			ele.style.opacity = opa;
+		var ele = this.elements[0];
+		if(ele.style.display != 'none'){
+			this.hide();
 		}else{
-			
-			
-			ele.setAttribute('data-show',SHOWINDEX);
-			DIS[SHOWINDEX] = this.css('display');
-			OPA[SHOWINDEX] = this.css('opacity');
-			ele.style.display = 'none';
-			console.log(index);
-			if(index == null){ 
-				console.log(111);
-				SHOWINDEX ++;
-			}
-		}
+			this.show();
+		}	
 
 		return this;
 	},
